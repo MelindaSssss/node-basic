@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      测试客户端
+    </div>
+  </body>
+  <script src="https://cdn.bootcss.com/socket.io/2.2.0/socket.io.js"></script>
+  <script>
+    var socket = io('http://127.0.0.1:8181')
+
+    /* 
+    1、加载socket.io库客户端。
+
+    2、连接websocket服务器，连接成功后，发送一条消息。并像服务器一样监听“message“类消息。
+    
+    */
+    socket.on('connect', function () {
+      console.log('connect')
+      socket.emit('message', 'this is client html page')
+    })
+    socket.on('message', function (message) {
+      console.log('message from server:', message)
+    })
+  </script>
+</html>
